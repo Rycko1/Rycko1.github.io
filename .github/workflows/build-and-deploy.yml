@@ -1,5 +1,5 @@
 name: Build & Deploy
-run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+run-name: Deploy by @${{ github.actor }}
 on:
   push:
     branches:
@@ -12,29 +12,17 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.x'
+          dotnet-version: "8.x"
       - name: Build
         shell: bash
-        run: |
-          dotnet publish -c Release
+        run: dotnet publish -c Release
       - name: Archive artifact
         shell: bash
-        run: |
-          tar \
-            --dereference --hard-dereference \
-            --directory "wwwroot" \
-            -cvf "$RUNNER_TEMP/artifact.tar" \
-            --exclude=.git \
-            --exclude=.github \
-            .
-        env:
-          INPUT_PATH: ${{ inputs.path }}
+        run: tar -C Rycko1.github.io/bin/Release/net8.0/wwwroot -cvf "$RUNNER_TEMP/artifact.tar" .
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ inputs.name }}
           path: ${{ runner.temp }}/artifact.tar
-          retention-days: ${{ inputs.retention-days }}
           if-no-files-found: error
   deploy:
     runs-on: ubuntu-latest

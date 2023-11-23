@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "ms-dotnettools.vscode-dotnet-runtime",
+    "ms-dotnettools.csharp",
+    "github.vscode-github-actions",
+    "syncfusioninc.blazor-vscode-extensions"
+  ]
+}
