@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="PublishSPAforGitHubPages.Build" Version="2.1.0" />
     <ProjectReference Include="..\Rycko1.github.io.Client\Rycko1.github.io.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
   </ItemGroup>
