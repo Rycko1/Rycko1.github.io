@@ -17,10 +17,10 @@ jobs:
         shell: bash
         run: |
           dotnet workload install wasm-tools
-          dotnet publish -c Release
+          dotnet publish -c Release -p GHPages=true
       - name: Archive artifact
         shell: bash
-        run: tar -C Rycko1.github.io/bin/Release/net8.0/publish/wwwroot -cvf "$RUNNER_TEMP/artifact.tar" .
+        run: tar -C bin/Release/net8.0/publish/wwwroot -cvf "$RUNNER_TEMP/artifact.tar" .
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
